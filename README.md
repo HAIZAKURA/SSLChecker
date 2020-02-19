@@ -16,7 +16,7 @@ $ cd SSLChecker
 Setup in and run `app.js`  , just like
 
 ```bash
-$ npm i ## or use 'yarn'
+$ npm i # or use 'yarn'
 $ node app.js
 ```
 

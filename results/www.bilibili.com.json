@@ -1,0 +1,11 @@
+{
+"domain": "www.bilibili.com",
+"subject": "C=CN; ST=\U4E0A\U6D77; L=\U4E0A\U6D77; O=\U4E0A\U6D77\U5E7B\U7535\U4FE1\U606F\U79D1\U6280\U6709\U9650\U516C\U53F8; CN=*.bilibili.com",
+"start": "Sep 18 09:32:07 2018 GMT",
+"expire": "Sep 18 09:21:04 2020 GMT",
+"issuer": "C=BE; O=GlobalSign nv-sa; CN=GlobalSign Organization Validation CA - SHA256 - G2",
+"check": "2020-02-19 10:41:53",
+"remain": "212",
+"status": "Valid",
+"statuscolor": "success"
+}

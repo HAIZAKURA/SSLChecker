@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>SSL Checker - HAIZAKURA Lab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HAIZAKURA/cdn/layui/css/layui.css">
+    <style>
+        body {
+            background-color: #eeeeee;
+        }
+        p {
+            text-align: right;
+            font-size: 16px;
+        }
+        span {
+            font-size: 18px;
+            vertical-align: middle;
+        }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .title h1 {
+            font-size: 36px;
+            line-height: 48px;
+        }
+        .layui-icon-vercode {
+            font-size: 36px;
+            line-height: 48px;
+            color: #009688;
+        }
+        #queryCard {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        #queryBtn {
+            width: 100%;
+        }
+        .hide {
+            display: none;
+        }
+        .foot-hr {
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            line-height: 24px;
+            margin-bottom: 20px;
+        }
+        .layui-container {
+            width: 60%;
+        }
+        .layui-card-header {
+            font-size: 18px;
+            vertical-align: middle;
+        }
+        .show-card {
+            height: 520px;
+            max-height: 520px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layui-container">
+        <div class="layui-row">
+            <a href="https://github.com/HAIZAKURA/SSL-Checker" target="_blank">
+            <div class="title layui-anim layui-anim-fadein">
+                <h1><i class="layui-icon layui-icon-vercode"></i>&nbsp;SSL&nbsp;Checker</h1>
+            </div>
+            </a>
+            <div class="layui-card layui-anim layui-anim-upbit">
+                <div class="layui-card-header">SSL&nbsp;状态查询</div>
+                <div class="layui-card-body" id="queryCard">
+                    <div class="layui-row layui-col-space20">
+                        <div class="layui-col-md10">
+                            <div class="layui-form layui-form-pane">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">网站地址</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="queryUrl" id="queryUrl" autofocus autocomplete="on" placeholder="请输入网址（主体部分，请不要输入https://）" class="layui-input" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md2">
+                            <button type="button" class="layui-btn" id="queryBtn" onclick="getRes()">查&nbsp;&nbsp;询</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card layui-anim layui-anim-fadein hide" id="queryRes">
+                <div class="layui-card-header"><a id="show-res-do">Domain</a>&nbsp;<span id="show-res-sa" class="layui-badge">Unknown</span></div>
+                <div class="layui-card-body">
+                    <table class="layui-table">
+                        <tbody>
+                            <tr>
+                                <td>Valid From</td>
+                                <td id="show-res-vf">Unknown</td>
+                            </tr>
+                            <tr>
+                                <td>Valid Until</td>
+                                <td id="show-res-vu">Unknown</td>
+                            </tr>
+                            <tr>
+                                <td>Remaining</td>
+                                <td id="show-res-re">Unknown</td>
+                            </tr>
+                            <tr>
+                                <td>Subject</td>
+                                <td id="show-res-su">Unknown</td>
+                            </tr>
+                            <tr>
+                                <td>Issuer</td>
+                                <td id="show-res-is">Unknown</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space20">
+                <div class="layui-col-md6">
+                    <div class="layui-card show-card layui-anim layui-anim-upbit">
+                        <div class="layui-card-header">nya.run&nbsp;<span id="show-a-sa" class="layui-badge">Unknown</span></div>
+                        <div class="layui-card-body">
+                            <fieldset class="layui-elem-field">
+                                <legend>Valid From</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-a-vf">Unknown</p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="layui-elem-field">
+                                <legend>Valid Until</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-a-vu">Unknown</p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="layui-elem-field">
+                                <legend>Remaining</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-a-re">Unknown</p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="layui-elem-field">
+                                <legend>Subject</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-a-su">Unknown</p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="layui-elem-field">
+                                <legend>Issuer</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-a-is">Unknown</p>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card show-card layui-anim layui-anim-upbit">
+                        <div class="layui-card-header">lab.nya.run&nbsp;<span id="show-b-sa" class="layui-badge">Unknown</span></div>
+                        <div class="layui-card-body">
+                            <fieldset class="layui-elem-field">
+                                <legend>Valid From</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-b-vf">Unknown</p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="layui-elem-field">
+                                <legend>Valid Until</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-b-vu">Unknown</p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="layui-elem-field">
+                                <legend>Remaining</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-b-re">Unknown</p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="layui-elem-field">
+                                <legend>Subject</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-b-su">Unknown</p>
+                                </div>
+                            </fieldset>
+                            <fieldset class="layui-elem-field">
+                                <legend>Issuer</legend>
+                                <div class="layui-field-box">
+                                    <p id="show-b-is">Unknown</p>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="foot-hr" />
+    <div class="footer">
+        <a href="https://nya.run/" target="_blank">Home</a>
+        &nbsp;&bull;&nbsp;
+        <a href="https://lab.nya.run/" target="_blank">Lab</a>
+        &nbsp;&bull;&nbsp;
+        <a href="https://github.com/HAIZAKURA" target="_blank">GitHub</a>
+        <br />
+        &copy;&nbsp;2020&nbsp;
+        <a href="https://nya.run/" target="_blank">HAIZAKUA</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/gh/HAIZAKURA/cdn/layui/layui.all.js"></script>
+    <script>
+        layui.jquery(document).ready(() => {
+            var $ = layui.jquery
+            $.ajax({
+                url: "/check/nya.run",
+                type: "get",
+                dataType: "json",
+                success: function(dataA) {
+                    $("p#show-a-vf").html(dataA.start)
+                    $("p#show-a-vu").html(dataA.expire)
+                    $("p#show-a-re").html(dataA.remain + " Days")
+                    $("p#show-a-su").html(dataA.subject)
+                    $("p#show-a-is").html(dataA.issuer)
+                    $("span#show-a-sa").html(dataA.status)
+                    if (dataA.statuscolor == "success") {
+                        $("span#show-a-sa").attr("class", "layui-badge layui-bg-green")
+                    }
+                    else if (dataA.statuscolor == "warning") {
+                        $("span#show-a-sa").attr("class", "layui-badge layui-bg-orange")
+                    }
+                    else {
+                        $("span#show-a-sa").attr("class", "layui-badge")
+                    }
+                    $.ajax({
+                        url: "/check/lab.nya.run",
+                        type: "get",
+                        dataType: "json",
+                        success: function(dataB) {
+                            $("p#show-b-vf").html(dataB.start)
+                            $("p#show-b-vu").html(dataB.expire)
+                            $("p#show-b-re").html(dataB.remain + " Days")
+                            $("p#show-b-su").html(dataB.subject)
+                            $("p#show-b-is").html(dataB.issuer)
+                            $("span#show-b-sa").html(dataB.status)
+                            if (dataB.statuscolor == "success") {
+                                $("span#show-b-sa").attr("class", "layui-badge layui-bg-green")
+                            }
+                            else if (dataB.statuscolor == "warning") {
+                                $("span#show-b-sa").attr("class", "layui-badge layui-bg-orange")
+                            }
+                            else {
+                                $("span#show-b-sa").attr("class", "layui-badge")
+                            }  
+                        },
+                        error: function() {
+                            alert("Network Communication Error!")
+                        }
+                    })
+                },
+                error: function() {
+                    alert("Network Communication Error!")
+                }
+            })
+        })
+        layui.jquery("input#queryUrl").keyup((event) => {
+            if (event.keyCode == 13) {
+                getRes()
+            }
+        })
+        function getRes() {
+            var $ = layui.jquery
+            $.ajax({
+                url: "/check/" + $("input#queryUrl").val(),
+                type: "get",
+                dataType: "json",
+                success: function(data) {
+                    if ($("div#queryRes").hasClass("hide")) {
+                        $("div#queryRes").removeClass("hide")
+                    }
+                    $("a#show-res-do").html(data.domain)
+                    $("td#show-res-vf").html(data.start)
+                    $("td#show-res-vu").html(data.expire)
+                    $("td#show-res-re").html(data.remain + " Days")
+                    $("td#show-res-su").html(data.subject)
+                    $("td#show-res-is").html(data.issuer)
+                    $("span#show-res-sa").html(data.status)
+                    if (data.statuscolor == "success") {
+                        $("span#show-res-sa").attr("class", "layui-badge layui-bg-green")
+                    }
+                    else if (data.statuscolor == "warning") {
+                        $("span#show-res-sa").attr("class", "layui-badge layui-bg-orange")
+                    }
+                    else {
+                        $("span#show-res-sa").attr("class", "layui-badge")
+                    }
+                },
+                error: function() {
+                    alert("Network Communication Error!")
+                }
+            })
+        }
+    </script>
+</body>
+</html>

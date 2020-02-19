@@ -1,0 +1,11 @@
+{
+"domain": "lab.nya.run",
+"subject": "CN=lab.nya.run",
+"start": "Feb 16 00:00:00 2020 GMT",
+"expire": "Feb 15 12:00:00 2021 GMT",
+"issuer": "C=CN; O=TrustAsia Technologies, Inc.; OU=Domain Validated SSL; CN=TrustAsia TLS RSA CA",
+"check": "2020-02-19 10:41:08",
+"remain": "362",
+"status": "Valid",
+"statuscolor": "success"
+}

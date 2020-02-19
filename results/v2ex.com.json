@@ -1,0 +1,11 @@
+{
+"domain": "v2ex.com",
+"subject": "C=US; ST=CA; L=San Francisco; O=CloudFlare, Inc.; CN=v2ex.com",
+"start": "Jun 20 00:00:00 2019 GMT",
+"expire": "Jun 19 12:00:00 2020 GMT",
+"issuer": "C=US; ST=CA; L=San Francisco; O=CloudFlare, Inc.; CN=CloudFlare Inc ECC CA-2",
+"check": "2020-02-19 10:35:30",
+"remain": "121",
+"status": "Valid",
+"statuscolor": "success"
+}

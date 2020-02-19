@@ -1,0 +1,11 @@
+{
+"domain": "nya.run",
+"subject": "CN=nya.run",
+"start": "Feb 15 00:00:00 2020 GMT",
+"expire": "Feb 15 12:00:00 2021 GMT",
+"issuer": "C=US; O=DigiCert Inc; OU=www.digicert.com; CN=Encryption Everywhere DV TLS CA - G1",
+"check": "2020-02-19 10:41:07",
+"remain": "362",
+"status": "Valid",
+"statuscolor": "success"
+}

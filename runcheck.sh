@@ -15,11 +15,11 @@ cat ./tmp/ca.info | grep 'subject: ' >> ./tmp/${1}.info
 # sed -i 's|\* [\t]* SSL certificate verify ||g' ./tmp/${1}.info
 # sed -i 's|\* [\t]* subject: ||g' ./tmp/${1}.info
 
-sed -i 's|\* \\t start date: ||g' ./tmp/${1}.info
-sed -i 's|\* \\t expire date: ||g' ./tmp/${1}.info
-sed -i 's|\* \\t issuer: ||g' ./tmp/${1}.info
-sed -i 's|\* \\t SSL certificate verify ||g' ./tmp/${1}.info
-sed -i 's|\* \\t subject: ||g' ./tmp/${1}.info
+sed -i 's|\* \t start date: ||g' ./tmp/${1}.info
+sed -i 's|\* \t expire date: ||g' ./tmp/${1}.info
+sed -i 's|\* \t issuer: ||g' ./tmp/${1}.info
+sed -i 's|\* \t SSL certificate verify ||g' ./tmp/${1}.info
+sed -i 's|\* \t subject: ||g' ./tmp/${1}.info
 
 start=$(sed -n '1p' ./tmp/${1}.info)
 expire=$(sed -n '2p' ./tmp/${1}.info)

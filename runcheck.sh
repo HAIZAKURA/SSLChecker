@@ -15,11 +15,12 @@ cat ./tmp/ca.info | grep 'subject: ' >> ./tmp/${1}.info
 # sed -i 's|\* [\t]* SSL certificate verify ||g' ./tmp/${1}.info
 # sed -i 's|\* [\t]* subject: ||g' ./tmp/${1}.info
 
-sed -i 's|\* \t start date: ||g' ./tmp/${1}.info
-sed -i 's|\* \t expire date: ||g' ./tmp/${1}.info
-sed -i 's|\* \t issuer: ||g' ./tmp/${1}.info
-sed -i 's|\* \t SSL certificate verify ||g' ./tmp/${1}.info
-sed -i 's|\* \t subject: ||g' ./tmp/${1}.info
+# CentOS
+sed -i 's/\* \tstart date: //g' ./tmp/${1}.info
+sed -i 's/\* \texpire date: //g' ./tmp/${1}.info
+sed -i 's/\* \tissuer: //g' ./tmp/${1}.info
+sed -i 's/\* \tSSL certificate verify //g' ./tmp/${1}.info
+sed -i 's/\* \tsubject: //g' ./tmp/${1}.info
 
 start=$(sed -n '1p' ./tmp/${1}.info)
 expire=$(sed -n '2p' ./tmp/${1}.info)
@@ -39,6 +40,7 @@ expirestamp="$(date -d "$expire" +%s)"
 # expireday=$((expirestamp-nowstamp))
 # expireday=$((expireday/86400))
 
+# CentOS
 expireday=`expr $[expirestamp-nowstamp] / 86400`
 
 echo '{' > tmp/${1}.json

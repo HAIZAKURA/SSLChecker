@@ -2,6 +2,7 @@
  🔧 A Node.js tool to check your site's SSL status.
 
 [![Author](https://img.shields.io/badge/Author-HAIZAKURA-b68469?style=flat-square)](https://nya.run)
+[![License](https://img.shields.io/github/license/HAIZAKURA/SSLChecker?style=flat-square)](./LICENSE)
 
 ## Usage
 

@@ -1,5 +1,5 @@
 # SSLChecker
- 🔧 A Node.js tool to check your site's SSL status.
+ 🔧 A Node.js (with Shell Script) tool to check your site's SSL status. Used Shell Script is [here](https://github.com/HAIZAKURA/CheckSSL).
 
 [![Author](https://img.shields.io/badge/Author-HAIZAKURA-b68469?style=flat-square)](https://nya.run)
 [![License](https://img.shields.io/github/license/HAIZAKURA/SSLChecker?style=flat-square)](./LICENSE)

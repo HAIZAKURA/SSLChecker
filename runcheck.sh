@@ -8,11 +8,18 @@ cat ./tmp/ca.info | grep 'issuer: ' >> ./tmp/${1}.info
 cat ./tmp/ca.info | grep 'SSL certificate verify' >> ./tmp/${1}.info
 cat ./tmp/ca.info | grep 'subject: ' >> ./tmp/${1}.info
 
-sed -i 's|\* [\t]* start date: ||g' ./tmp/${1}.info
-sed -i 's|\* [\t]* expire date: ||g' ./tmp/${1}.info
-sed -i 's|\* [\t]* issuer: ||g' ./tmp/${1}.info
-sed -i 's|\* [\t]* SSL certificate verify ||g' ./tmp/${1}.info
-sed -i 's|\* [\t]* subject: ||g' ./tmp/${1}.info
+# Ubuntu
+# sed -i 's|\* [\t]* start date: ||g' ./tmp/${1}.info
+# sed -i 's|\* [\t]* expire date: ||g' ./tmp/${1}.info
+# sed -i 's|\* [\t]* issuer: ||g' ./tmp/${1}.info
+# sed -i 's|\* [\t]* SSL certificate verify ||g' ./tmp/${1}.info
+# sed -i 's|\* [\t]* subject: ||g' ./tmp/${1}.info
+
+sed -i 's|\* \t start date: ||g' ./tmp/${1}.info
+sed -i 's|\* \t expire date: ||g' ./tmp/${1}.info
+sed -i 's|\* \t issuer: ||g' ./tmp/${1}.info
+sed -i 's|\* \t SSL certificate verify ||g' ./tmp/${1}.info
+sed -i 's|\* \t subject: ||g' ./tmp/${1}.info
 
 start=$(sed -n '1p' ./tmp/${1}.info)
 expire=$(sed -n '2p' ./tmp/${1}.info)
@@ -27,8 +34,12 @@ DATE="$(echo $(date '+%Y-%m-%d %H:%M:%S'))"
 
 nowstamp="$(date -d "$DATE" +%s)"
 expirestamp="$(date -d "$expire" +%s)"
-expireday=$((expirestamp-nowstamp))
-expireday=$((expireday/86400))
+
+# Ubuntu
+# expireday=$((expirestamp-nowstamp))
+# expireday=$((expireday/86400))
+
+expireday=`expr $[expirestamp-nowstamp] / 86400`
 
 echo '{' > tmp/${1}.json
 echo '"domain": "'${1}'",' >> ./tmp/${1}.json
